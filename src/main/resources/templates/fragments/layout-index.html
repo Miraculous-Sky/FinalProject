@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Main layout</title>
+<link href="../../static/css/plugins.css" th:href="@{/css/plugins.css}"
+	type="text/css" media="screen" rel="stylesheet" />
+<link href="../../static/css/main.css" th:href="@{/css/main.css}"
+	type="text/css" media="screen" rel="stylesheet" />
+<link href="../../image/favicon.ico" th:href="@{/image/favicon.ico}"
+	rel="shortcut icon" type="image/x-icon">
+</head>
+
+<body>
+	<div class="site-wrapper" id="top">
+		<div th:replace="fragments/header :: header-web"></div>
+		<div th:replace="fragments/header :: header-mobile"></div>
+		<div th:replace="fragments/header :: header-sticky"></div>
+		<div layout:fragment="content"></div>
+	</div>
+
+	<section th:replace="fragments/section :: brands"></section>
+	<footer class="site-footer">
+		<div th:replace="fragments/footer :: footer-top"></div>
+		<div th:replace="fragments/footer :: footer-bottom"></div>
+	</footer>
+
+	<script src="../../static/js/plugins.js" th:src="@{js/plugins.js}"></script>
+	<script src="../../static/js/ajax-mail.js" th:src="@{js/ajax-mail.js}"></script>
+	<script src="../../static/js/custom.js" th:src="@{js/custom.js}"></script>
+</body>
+
+</html>
