@@ -17,6 +17,7 @@
 
 .metadata
 bin/
+!james-server-app-3.5.0/bin/
 tmp/
 *.tmp
 *.bak
