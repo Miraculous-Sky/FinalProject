@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -15,8 +16,10 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "dbuser", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User implements Serializable {
+	private static final long serialVersionUID = 3610262709543807025L;
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String email;
 	private String password;
@@ -25,7 +28,8 @@ public class User implements Serializable {
 	private String phoneNumber;
 	//
 	@ManyToMany
-	@JoinTable(name ="user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {@JoinColumn(name = "roleId")})
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "roleId") })
 	private Collection<Role> roles;
 
 	public Collection<Role> getRoles() {
