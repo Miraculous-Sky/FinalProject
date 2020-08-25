@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout-main}">
+
+<head>
+<meta charset="UTF-8">
+<title>Complete</title>
+<link href="../static/css/plugins.css" type="text/css" media="screen"
+	rel="stylesheet" />
+<link href="../static/css/main.css" type="text/css" media="screen"
+	rel="stylesheet" />
+<link href="../static/image/favicon.ico" rel="shortcut icon"
+	type="image/x-icon">
+</head>
+
+<body>
+	<div class="site-wrapper" id="top">
+		<div layout:fragment="content">
+			<section class="order-complete inner-page-sec-padding-bottom">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div class="order-complete-message text-center">
+								<h1>Thank you !</h1>
+								<p>Your order has been received.</p>
+							</div>
+							<ul class="order-details-list">
+								<li>Order Number: <strong>3053</strong></li>
+								<li>Date: <strong>January 24, 2019</strong></li>
+								<li>Total: <strong>$117.00</strong></li>
+								<li>Payment Method: <strong>Cash on Delivery</strong></li>
+							</ul>
+							<p>Pay with cash upon delivery.</p>
+							<h3 class="order-table-title">Order Details</h3>
+							<div class="table-responsive">
+								<table class="table order-details-table">
+									<thead>
+										<tr>
+											<th>Product</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><a href="single-product.html">Vans Off The Wall
+													T-Shirt In</a> <strong>× 1</strong></td>
+											<td><span>$59.00</span></td>
+										</tr>
+										<tr>
+											<td><a href="single-product.html">Supreme Being Icon
+													Glitch T-Shirt</a> <strong>× 1</strong></td>
+											<td><span>$58.00</span></td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Subtotal:</th>
+											<td><span>$117.00</span></td>
+										</tr>
+										<tr>
+											<th>Payment Method:</th>
+											<td>Cash on Delivery</td>
+										</tr>
+										<tr>
+											<th>Total:</th>
+											<td><span>$117.00</span></td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<script src="../static/js/plugins.js"></script>
+	<script src="../static/js/ajax-mail.js"></script>
+	<script src="../static/js/custom.js"></script>
+</body>
+
+</html>

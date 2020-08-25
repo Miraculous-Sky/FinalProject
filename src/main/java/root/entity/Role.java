@@ -15,7 +15,7 @@ public class Role {
 	@GeneratedValue
 	private int roleId;
 	private String roleName;
-@ManyToMany(mappedBy = "roles")
+	@ManyToMany(mappedBy = "roles")
 	private Collection<User> users;
 
 	public int getRoleId() {

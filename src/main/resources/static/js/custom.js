@@ -1,4 +1,16 @@
 jQuery(document).ready(function($) {
+	$.ajax({
+        url: '/get-genre'
+    })
+    .done(function(response) {
+    	for (let i = 0; i < response.length; i++) {
+    		$('.category-menu').append(`<li class="cat-item "><a href="/category?id=${response[i]}">${response[i]}</a></li>`)
+    	}
+    })
+    .fail(function() {
+    	$('.category-menu').append('<li class="cat-item "><a href="#">ERROR!</a></li>')
+    });
+	
     (function($) {
 
         'use strict';
@@ -469,22 +481,5 @@ jQuery(document).ready(function($) {
         }
 
     });
-
-    /*--
-        15: Google Map
-    ----------------------------------------------------*/
-	// Initialize and add the map
-	if($('#google-map').length){
-		function initMap() {
-			// The location of Uluru
-			var uluru = {lat: 21.0277214, lng: 105.8342015};
-			// The map, centered at Uluru
-			var map = new google.maps.Map(
-				document.getElementById('google-map'), {zoom: 12, center: uluru});
-			// The marker, positioned at Uluru
-			var marker = new google.maps.Marker({position: uluru, map: map});
-		}
-		initMap();
-	}
-
+    
 });
