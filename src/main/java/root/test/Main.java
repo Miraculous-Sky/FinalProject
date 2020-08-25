@@ -29,7 +29,7 @@ public class Main {
 		// Step2: get Mail Session
 		getMailSession = Session.getDefaultInstance(mailServerProperties, null);
 		mailMessage = new MimeMessage(getMailSession);
-		mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("vonguyenhuunhan@gmail.com"));
+		mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress("truongsonghiep@gmail.com"));
 //	    generateMailMessage.addRecipient(Message.RecipientType.CC, new InternetAddress("cc@gmail.com")); 
 		mailMessage.setSubject("Xác thực tài khoản");
 		String emailBody = "<p style='color: red'>Ê, đây là link xác thực tài khoản nèk!<p>";

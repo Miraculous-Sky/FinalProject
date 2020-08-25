@@ -23,10 +23,9 @@ public class User implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
-
+	//
 	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "roleId") })
+	@JoinTable(name ="user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {@JoinColumn(name = "roleId")})
 	private Collection<Role> roles;
 
 	public Collection<Role> getRoles() {
