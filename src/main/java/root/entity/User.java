@@ -108,7 +108,6 @@ public class User implements Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
-<<<<<<< Updated upstream
 
 	public Cart getCart() {
 		return cart;
@@ -117,7 +116,5 @@ public class User implements Serializable {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-=======
->>>>>>> Stashed changes
 
 }

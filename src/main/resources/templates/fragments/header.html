@@ -94,7 +94,7 @@
 						<div class="col-lg-4">
 							<div class="main-navigation flex-lg-right">
 								<div class="cart-widget">
-									<div th:if="${true}" class="login-block">
+									<div th:unless="${session.userSession}" class="login-block">
 										<a href="../login-register.html" th:href="@{/login}"
 											class="font-weight-bold"> <i
 											class="icons-left fas fa-sign-in-alt"></i> Login
@@ -103,7 +103,7 @@
 											class="icons-left fas fa-file-signature"></i> Register
 										</a>
 									</div>
-									<div th:unless="${true}" class="login-block">
+									<div th:if="${session.userSession}" class="login-block">
 										<a href="../my-account.html" th:href="@{/my-account}"
 											class="font-weight-bold"> <i
 											class="icons-left fas fa-user"></i> My Account
@@ -228,10 +228,11 @@
 						<!-- mobile menu navigation start -->
 						<nav class="off-canvas-nav">
 							<ul class="mobile-menu main-mobile-menu">
-								<li th:if="${true}"><a href="contact.html">Login</a></li>
-								<li th:unless="${true}" class="menu-item-has-children"><span
-									class="menu-expand"><i class="fas fa-chevron-down"></i></span>
-									<a href="#">My Account</a>
+								<li th:unless="${session.userSession}"><a
+									href="contact.html">Login</a></li>
+								<li th:if="${session.userSession}"
+									class="menu-item-has-children"><span class="menu-expand"><i
+										class="fas fa-chevron-down"></i></span> <a href="#">My Account</a>
 									<ul class="sub-menu" style="display: none;">
 										<li><a href="index.html">Account details</a></li>
 										<li><a href="index-2.html">Order history</a></li>
@@ -308,11 +309,12 @@
 												th:src="@{/image/icon/eng-flag.png}" alt="">
 										</span> <a href="#">English</a></li>
 									</ul></li>
-								<li th:if="${true}" class="menu-item"><a
+								<li th:unless="${session.userSession}" class="menu-item"><a
 									href="javascript:void(0)"> <i
 										class="icons-left fas fa-sign-in-alt"></i> Login
 								</a></li>
-								<li th:unless="${true}" class="menu-item has-children"><a
+								<li th:if="${session.userSession}"
+									class="menu-item has-children"><a
 									href="javascript:void(0)"> <i
 										class="icons-left fas fa-user"></i> My Account <i
 										class="fas fa-chevron-down dropdown-arrow"></i></a>
