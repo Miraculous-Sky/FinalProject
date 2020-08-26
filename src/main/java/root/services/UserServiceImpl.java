@@ -1,6 +1,8 @@
 package root.services;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +64,24 @@ public class UserServiceImpl implements UserService {
 				return u;
 			}
 		}
-return null;
-		
+		return null;
+
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		List<User> users = (List<User>) userRepository.findAll();
+		return users;
+	}
+
+	@Override
+	public void deleteUserById(int id) {
+		userRepository.deleteById(id);
+
+	}
+
+	@Override
+	public Optional<User> findUserById(int id) {
+		return userRepository.findById(id);
 	}
 }

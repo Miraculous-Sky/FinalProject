@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:layout="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
@@ -15,9 +16,9 @@
 
 <body>
 	<div class="site-wrapper" id="top">
-		<div th:replace="fragments/header :: header-web"></div>
-		<div th:replace="fragments/header :: header-mobile"></div>
-		<div th:replace="fragments/header :: header-sticky"></div>
+		<div th:replace="fragments/header-admin :: header-web"></div>
+		<div th:replace="fragments/header-admin :: header-mobile"></div>
+		<div th:replace="fragments/header-admin :: header-sticky"></div>
 		<div th:replace="fragments/section :: breadcrumb"></div>
 		<div layout:fragment="content">
 		</div>
@@ -27,7 +28,6 @@
 		<div th:replace="fragments/footer :: footer-top"></div>
 		<div th:replace="fragments/footer :: footer-bottom"></div>
 	</footer>
-
 	<script src="../../static/js/plugins.js" th:src="@{/js/plugins.js}"></script>
 	<script src="../../static/js/ajax-mail.js" th:src="@{/js/ajax-mail.js}"></script>
 	<script src="../../static/js/custom.js" th:src="@{/js/custom.js}"></script>

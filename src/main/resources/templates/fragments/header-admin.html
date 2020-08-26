@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Header</title>
+<link href="../../static/css/plugins.css" type="text/css" media="screen"
+	rel="stylesheet" />
+<link href="../../static/css/main.css" type="text/css" media="screen"
+	rel="stylesheet" />
+<link href="../../static/image/favicon.ico" rel="shortcut icon"
+	type="image/x-icon">
+</head>
+
+<body>
+	<div class="site-wrapper" id="top">
+		<div th:fragment="header-web" class="site-header d-none d-lg-block">
+			<div class="header-middle pt--10 pb--10">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-3">
+							<div class="site-brand" onclick="return false;">
+								<img src="../../static/image/logo.png"
+									th:src="@{/image/logo.png}" alt="" draggable="false">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="header-phone ">
+								<div class="icon">
+									<i class="fas fa-headphones-alt"></i>
+								</div>
+								<div class="text">
+									<p>Free Support 24/7</p>
+									<p class="font-weight-bold number">+84-0941956005</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="main-navigation flex-lg-right">
+								<ul class="main-menu menu-right ">
+									<li class="menu-item"><a href="../index.html"
+										th:href="@{/}"> <i class="icons-left fas fa-home"></i>
+											Home
+									</a></li>
+									<li class="menu-item"><a href="../faq.html"
+										th:href="@{/faq}"> <i
+											class="icons-left fas fa-question-circle"></i> FAQ
+									</a></li>
+									<li class="menu-item"><a href="../contact.html"
+										th:href="@{/contact}"> <i class="icons-left fas fa-phone"></i>
+											Contact
+									</a></li>
+									<li class="menu-item has-children"><a
+										href="javascript:void(0)"> <i
+											class="icons-left fas fa-globe"></i> Language <i
+											class="fas fa-chevron-down dropdown-arrow"></i></a>
+										<ul class="sub-menu">
+											<li><span class="flag-img"> <img
+													src="../../static/image/icon/vietnam-flag.png"
+													th:src="@{/image/icon/vietnam-flag.png}" alt="">
+											</span> <a href="#">Tiếng Việt</a></li>
+											<li><span class="flag-img"> <img
+													src="../../static/image/icon/eng-flag.png"
+													th:src="@{/image/icon/eng-flag.png}" alt="">
+											</span> <a href="#">English</a></li>
+										</ul></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="header-bottom pb--10">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-3">
+							<nav class="category-nav   ">
+								<div>
+									<a href="javascript:void(0)" class="category-trigger"><i
+										class="fa fa-bars"></i>Browse gender</a>
+									<ul class="category-menu"></ul>
+								</div>
+							</nav>
+						</div>
+						<div class="col-lg-5">
+							<div class="header-search-block">
+								<form th:action="@{/search}">
+									<input type="text" placeholder="Search book here"
+										name="bookName">
+									<button type="submit">Search</button>
+								</form>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="main-navigation flex-lg-right">
+								<div class="cart-widget">
+<!-- 									// -->
+									<div  class="login-block">
+										<a href="../login-register.html" th:href="@{/admin/book}"
+											class="font-weight-bold"> <i
+											class="icons-left fas fa-sign-in-alt"></i> Manage Book
+										</a> <br> <span>or</span> <a href="../login-register.html"
+											th:href="@{/admin/user}" class="font-weight-bold"> <i
+											class="icons-left fas fa-file-signature"></i> Manage User
+										</a>
+									</div>
+<!-- 									// -->
+									<div th:if="${session.userSession}" class="login-block">
+										<a href="../my-account.html" th:href="@{/my-account}"
+											class="font-weight-bold"> <i
+											class="icons-left fas fa-user"></i> My Account
+										</a> <br> <span>or</span> <a href="../index.html"
+											th:href="@{/logout}" class="font-weight-bold"> <i
+											class="icons-left fas fa-sign-out-alt"></i> Logout
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:fragment="header-mobile" class="site-mobile-menu">
+			<header class="mobile-header d-block d-lg-none pt--10 pb-md--10">
+				<div class="container">
+					<div class="row align-items-sm-end align-items-center">
+						<div class="col-md-4 col-7">
+							<a href="../index.html" class="site-brand"> <img
+								src="../../static/image/logo.png" alt="">
+							</a>
+						</div>
+						<div class="col-md-5 order-3 order-md-2">
+							<nav class="category-nav   ">
+								<div>
+									<a href="javascript:void(0)" class="category-trigger"><i
+										class="fa fa-bars"></i>Browse categories</a>
+									<ul class="category-menu"></ul>
+								</div>
+							</nav>
+						</div>
+						<div class="col-md-3 col-5  order-md-3 text-right">
+							<div class="mobile-header-btns header-top-widget">
+								<ul class="header-links">
+									<li class="sin-link"><a href="../cart.html"
+										th:href="@{/cart}" class="cart-link link-icon"><i
+											class="ion-bag"></i></a></li>
+									<li class="sin-link"><a href="javascript:"
+										class="link-icon hamburgur-icon off-canvas-btn"><i
+											class="ion-navicon"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- Off Canvas Navigation Start-->
+			<aside class="off-canvas-wrapper">
+				<div class="btn-close-off-canvas">
+					<i class="ion-android-close"></i>
+				</div>
+				<div class="off-canvas-inner">
+					<!-- search box start -->
+					<div class="search-box offcanvas">
+						<form>
+							<input type="text" placeholder="Search Here">
+							<button class="search-btn">
+								<i class="ion-ios-search-strong"></i>
+							</button>
+						</form>
+					</div>
+					<!-- search box end -->
+					<!-- mobile menu start -->
+					<div class="mobile-navigation">
+						<!-- mobile menu navigation start -->
+						<nav class="off-canvas-nav">
+							<ul class="mobile-menu main-mobile-menu">
+								<li th:unless="${session.userSession}"><a
+									href="contact.html">Login</a></li>
+								<li th:if="${session.userSession}"
+									class="menu-item-has-children"><span class="menu-expand"><i
+										class="fas fa-chevron-down"></i></span> <a href="#">My Account</a>
+									<ul class="sub-menu" style="display: none;">
+										<li><a href="index.html">Account details</a></li>
+										<li><a href="index-2.html">Order history</a></li>
+										<li><a href="index-3.html">Logout</a></li>
+									</ul></li>
+								<li><a href="contact.html">FAQ</a></li>
+								<li><a href="contact.html">Contact</a></li>
+
+							</ul>
+						</nav>
+						<!-- mobile menu navigation end -->
+					</div>
+					<!-- mobile menu end -->
+					<nav class="off-canvas-nav">
+						<ul class="mobile-menu menu-block-2">
+							<li class="menu-item-has-children"><span class="menu-expand"><i
+									class="fas fa-chevron-down"></i></span> <a href="#">Lang - Eng<i
+									class="fas fa-angle-down"></i></a>
+								<ul class="sub-menu" style="display: none;">
+									<li>Eng</li>
+									<li>Ban</li>
+								</ul></li>
+						</ul>
+					</nav>
+					<div class="off-canvas-bottom">
+						<div class="contact-list mb--10">
+							<a href="" class="sin-contact"><i class="fas fa-mobile-alt"></i>(12345)
+								78790220</a> <a href="" class="sin-contact"><i
+								class="fas fa-envelope"></i>examle@handart.com</a>
+						</div>
+						<div class="off-canvas-social">
+							<a href="#" class="single-icon"><i class="fab fa-facebook-f"></i></a>
+							<a href="#" class="single-icon"><i class="fab fa-twitter"></i></a>
+							<a href="#" class="single-icon"><i class="fas fa-rss"></i></a> <a
+								href="#" class="single-icon"><i class="fab fa-youtube"></i></a>
+							<a href="#" class="single-icon"><i
+								class="fab fa-google-plus-g"></i></a> <a href="#"
+								class="single-icon"><i class="fab fa-instagram"></i></a>
+						</div>
+					</div>
+				</div>
+			</aside>
+		</div>
+		<div th:fragment="header-sticky"
+			class="sticky-init common-sticky fixed-header">
+			<div class="container d-none d-lg-block">
+				<div class="row align-items-center">
+					<div class="col-lg-4">
+						<a href="index.html" class="site-brand"> <img
+							src="image/logo.png" alt="">
+						</a>
+					</div>
+					<div class="col-lg-8">
+						<div class="main-navigation flex-lg-right">
+							<ul class="main-menu menu-right ">
+								<li class="menu-item"><a href="../index.html"
+									th:href="@{/}"> <i class="icons-left fas fa-home"></i> Home
+								</a></li>
+								<li class="menu-item"><a href="../cart.html"
+									th:href="@{/cart}" class="cart-link link-icon"> <i
+										class="ion-bag"></i> Cart
+								</a></li>
+								<li class="menu-item has-children"><a
+									href="javascript:void(0)"> <i
+										class="icons-left fas fa-globe"></i> Language <i
+										class="fas fa-chevron-down dropdown-arrow"></i></a>
+									<ul class="sub-menu">
+										<li><span class="flag-img"> <img
+												src="../../static/image/icon/vietnam-flag.png"
+												th:src="@{/image/icon/vietnam-flag.png}" alt="">
+										</span> <a href="#">Tiếng Việt</a></li>
+										<li><span class="flag-img"> <img
+												src="../../static/image/icon/eng-flag.png"
+												th:src="@{/image/icon/eng-flag.png}" alt="">
+										</span> <a href="#">English</a></li>
+									</ul></li>
+								<li th:unless="${session.userSession}" class="menu-item"><a
+									href="javascript:void(0)"> <i
+										class="icons-left fas fa-sign-in-alt"></i> Login
+								</a></li>
+								<li th:if="${session.userSession}"
+									class="menu-item has-children"><a
+									href="javascript:void(0)"> <i
+										class="icons-left fas fa-user"></i> My Account <i
+										class="fas fa-chevron-down dropdown-arrow"></i></a>
+									<ul class="sub-menu">
+										<li><a href="#">Account Details</a></li>
+										<li><a href="#">Order History</a></li>
+										<li><a href="#">Logout</a></li>
+									</ul></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../static/js/plugins.js"></script>
+	<script src="../../static/js/ajax-mail.js"></script>
+	<script src="../../static/js/custom.js"></script>
+</body>
+
+</html>
