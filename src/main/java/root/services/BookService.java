@@ -1,6 +1,7 @@
 package root.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -15,4 +16,6 @@ public interface BookService {
 	void saveBook(Book book);
 
 	void deleteBook(Book book);
+
+	public Optional<Book> findUserById(int id);
 }

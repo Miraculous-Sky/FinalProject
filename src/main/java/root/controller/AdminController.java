@@ -61,7 +61,27 @@ public class AdminController {
 	  }  
 	@RequestMapping(value = "/add")  
 	  public String addUser(Model model) {  
-	    model.addAttribute("user", new User());  
+		User user =new User();
+	    model.addAttribute("user", user);  
 	    return "admin/addUser";  
+	  }
+	@RequestMapping(value = "/edit_book", method = RequestMethod.GET)
+	public String editBook(@RequestParam("id") int bookId, Model model) {
+		Optional<Book> bookEdit = bookService.findUserById(bookId);
+		bookEdit.ifPresent(user -> model.addAttribute("user", user));
+		return "admin/editbook";
+	}
+	@RequestMapping(value = "/add_book")  
+	  public String addBook(Model model) {  
+	    model.addAttribute("book", new Book());  
+	    return "admin/addBook";  
+	  }
+	@RequestMapping(value = "/save_book", method = RequestMethod.POST)
+	  public String saveBook(Book book, Model model) {  
+	    bookService.saveBook(book); 
+		List<Book> books = bookService.getAllBook();
+		model.addAttribute("books", books);
+	    return "admin/book-management"; 
 	  }  
+	
 }
