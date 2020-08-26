@@ -10,4 +10,6 @@ public interface UserService {
 	boolean canLogin(User user);
 
 	boolean canLogin(String email, String password);
+
+	User findEmail(String email);
 }

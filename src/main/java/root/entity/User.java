@@ -30,7 +30,7 @@ public class User implements Serializable {
 	@Email(message = "Not email!")
 	private String email;
 	//
-	@Min(value = 6, message = "Password is wrong!")
+	@NotBlank(message = "Password is wrong!")
 	private String password;
 	@Min(value = 6, message = "Repeat password is wrong!")
 	private String repeatPassword;
@@ -108,6 +108,7 @@ public class User implements Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
+<<<<<<< Updated upstream
 
 	public Cart getCart() {
 		return cart;
@@ -116,5 +117,7 @@ public class User implements Serializable {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+=======
+>>>>>>> Stashed changes
 
 }

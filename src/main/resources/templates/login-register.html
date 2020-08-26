@@ -79,7 +79,7 @@
 							</form>
 						</div>
 						<div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-							<form th:action="@{/login}" method="post">
+							<form name="f" th:action="@{/loginForm}" th:object="${loginForm}" method="post">
 								<div class="login-form">
 									<h4 class="login-title">Returning Customer</h4>
 									<p>
@@ -91,14 +91,20 @@
 										<p th:if="${param.logout}" class="success">You have been
 											logged out</p>
 										<div class="col-md-12 col-12 mb--15">
-											<label for="email">Enter your email address here...</label> <input
-												type="email" class="mb-0 form-control" id="email1"
+											<label for="email">Enter your email address here...</label> <input name="email"
+												type="email" class="mb-0 form-control" id="email"
 												placeholder="Enter you email address here..." />
+												<span
+												style="color: red" th:if="${#fields.hasErrors('email')}"
+												th:errors="*{email}"></span>
 										</div>
 										<div class="col-12 mb--20">
-											<label for="password">Password</label> <input
+											<label for="password">Password</label> <input name="password"
 												class="mb-0 form-control" type="password"
-												id="login-password" placeholder="Enter your password">
+												id="password" placeholder="Enter your password">
+												<span
+												style="color: red" th:if="${#fields.hasErrors('password')}"
+												th:errors="*{password}"></span>
 										</div>
 										<div class="col-md-12">
 											<p style="color: red" th:if="${param.error}" class="error">Invalid
