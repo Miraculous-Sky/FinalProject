@@ -23,7 +23,8 @@
 						<div
 							class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb--30 mb-lg--0">
 							<!-- Login Form s-->
-							<form action="#">
+							<form th:action="@{/register}" method="POST"
+								th:object="${registerUser}">
 								<div class="login-form">
 									<h4 class="login-title">New Customer</h4>
 									<p>
@@ -32,33 +33,53 @@
 									<div class="row">
 										<div class="col-md-12 col-12 mb--15">
 											<label for="email">Full Name</label> <input
-												class="mb-0 form-control" type="text" id="name"
-												placeholder="Enter your full name">
+												th:field="*{fullName}" class="mb-0 form-control" type="text"
+												id="name" placeholder="Enter your full name"> <span
+												style="color: red" th:if="${#fields.hasErrors('fullName')}"
+												th:errors="*{fullName}"></span>
 										</div>
 										<div class="col-12 mb--20">
-											<label for="email">Email</label> <input
+											<label for="email">Email</label> <input th:field="*{email}"
 												class="mb-0 form-control" type="email" id="email"
-												placeholder="Enter Your Email Address Here..">
+												placeholder="Enter Your Email Address Here.."> <span
+												style="color: red" th:if="${#fields.hasErrors('email')}"
+												th:errors="*{email}"></span>
+										</div>
+										<div class="col-12 mb--20">
+											<label for="email">Phone Number</label> <input
+												th:field="*{phoneNumber}" class="mb-0 form-control"
+												type="text" id="phoneNumber"
+												placeholder="Enter Your PhoneNumber Here.."> <span
+												style="color: red"
+												th:if="${#fields.hasErrors('phoneNumber')}"
+												th:errors="*{phoneNumber}"></span>
 										</div>
 										<div class="col-lg-6 mb--20">
 											<label for="password">Password</label> <input
-												class="mb-0 form-control" type="password" id="password"
-												placeholder="Enter your password">
+												th:field="*{password}" class="mb-0 form-control"
+												type="password" id="password"
+												placeholder="Enter your password"> <span
+												style="color: red" th:if="${#fields.hasErrors('password')}"
+												th:errors="*{password}"></span>
 										</div>
 										<div class="col-lg-6 mb--20">
 											<label for="password">Repeat Password</label> <input
-												class="mb-0 form-control" type="password"
-												id="repeat-password" placeholder="Repeat your password">
+												th:field="*{repeatPassword}" class="mb-0 form-control"
+												type="password" id="repeat-password"
+												placeholder="Repeat your password"> <span
+												style="color: red"
+												th:if="${#fields.hasErrors('repeatPassword')}"
+												th:errors="*{repeatPassword}"></span>
 										</div>
 										<div class="col-md-12">
-											<a href="#" class="btn btn-outlined">Register</a>
+											<button type="submit" class="btn btn-outlined">Register</button>
 										</div>
 									</div>
 								</div>
 							</form>
 						</div>
 						<div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-							<form th:action="@{/login}" th:object="${loginForm}" method="post">
+							<form th:action="@{/login}" method="post">
 								<div class="login-form">
 									<h4 class="login-title">Returning Customer</h4>
 									<p>
@@ -66,25 +87,25 @@
 											customer</span>
 									</p>
 									<div class="row">
+
+										<p th:if="${param.logout}" class="success">You have been
+											logged out</p>
 										<div class="col-md-12 col-12 mb--15">
 											<label for="email">Enter your email address here...</label> <input
-												type="email" th:field="*{email}" class="mb-0 form-control"
-												id="email1" placeholder="Enter you email address here..." />
-											<span
-												th:if="${#fields.hasErrors('email')}"
-												th:errors="*{email}">..............</span>
+												type="email" class="mb-0 form-control" id="email1"
+												placeholder="Enter you email address here..." />
 										</div>
 										<div class="col-12 mb--20">
 											<label for="password">Password</label> <input
-												th:field="*{password}" class="mb-0 form-control"
-												type="password" id="login-password"
-												placeholder="Enter your password"> <span
-												th:if="${#fields.hasErrors('password')}"
-												th:errors="*{password}">....</span>
+												class="mb-0 form-control" type="password"
+												id="login-password" placeholder="Enter your password">
 										</div>
 										<div class="col-md-12">
-<!-- 											<a href="#" class="btn btn-outlined">Login</a> -->
-											<button type ="submit" class="btn btn-outlined">Login</button>
+											<p style="color: red" th:if="${param.error}" class="error">Invalid
+												email or password!</p>
+										</div>
+										<div class="col-md-12">
+											<button type="submit" class="btn btn-outlined">Login</button>
 										</div>
 									</div>
 								</div>

@@ -6,11 +6,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class LoginForm {
-	@NotBlank(message = "khong duoc de trong")
-	@Email(message = "Khong dung dinh dang")
+	@NotBlank(message = "Not blank!")
+	@Email(message = "Not email!")
 	private String email;
-	@NotNull(message = "Khong duoc de trong")
-	@Min(value = 6, message = "Sai mat khau")
+	@NotNull(message = "Not null")
+	@Min(value = 6, message = "Password wrong!")
 	private String password;
 
 	//
