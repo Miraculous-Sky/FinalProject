@@ -19,10 +19,9 @@
 				<div class="container">
 					<div class="row align-items-center">
 						<div class="col-lg-3">
-							<div class="site-brand"
-								onclick="return false;"> <img
-								src="../../static/image/logo.png" th:src="@{image/logo.png}"
-								alt="" draggable="false">
+							<div class="site-brand" onclick="return false;">
+								<img src="../../static/image/logo.png"
+									th:src="@{/image/logo.png}" alt="" draggable="false">
 							</div>
 						</div>
 						<div class="col-lg-3">
@@ -44,7 +43,7 @@
 											Home
 									</a></li>
 									<li class="menu-item"><a href="../faq.html"
-										th:href="@{faq}"> <i
+										th:href="@{/faq}"> <i
 											class="icons-left fas fa-question-circle"></i> FAQ
 									</a></li>
 									<li class="menu-item"><a href="../contact.html"
@@ -58,11 +57,11 @@
 										<ul class="sub-menu">
 											<li><span class="flag-img"> <img
 													src="../../static/image/icon/vietnam-flag.png"
-													th:src="@{image/icon/vietnam-flag.png}" alt="">
+													th:src="@{/image/icon/vietnam-flag.png}" alt="">
 											</span> <a href="#">Tiếng Việt</a></li>
 											<li><span class="flag-img"> <img
 													src="../../static/image/icon/eng-flag.png"
-													th:src="@{image/icon/eng-flag.png}" alt="">
+													th:src="@{/image/icon/eng-flag.png}" alt="">
 											</span> <a href="#">English</a></li>
 										</ul></li>
 								</ul>
@@ -85,8 +84,11 @@
 						</div>
 						<div class="col-lg-5">
 							<div class="header-search-block">
-								<input type="text" placeholder="Search entire store here">
-								<button>Search</button>
+								<form th:action="@{/search}">
+									<input type="text" placeholder="Search book here"
+										name="bookName">
+									<button type="submit">Search</button>
+								</form>
 							</div>
 						</div>
 						<div class="col-lg-4">
@@ -110,27 +112,43 @@
 											class="icons-left fas fa-sign-out-alt"></i> Logout
 										</a>
 									</div>
-									<div class="cart-block">
+									<div class="cart-block" th:if="${session.cart}">
 										<div class="cart-total">
-											<span class="text-number"> 1 </span> <span class="text-item">
-												Shopping Cart </span> <span class="price"> £0.00 <i
-												class="fas fa-chevron-down"></i>
-											</span>
+											<span class="text-number" th:text=${session.cart.size()}></span>
+											<span class="text-item"> Shopping Cart </span> <span
+												class="price" th:text=${session.cart.totalAmount()}><i
+												class="fas fa-chevron-down"></i> </span>
 										</div>
 										<div class="cart-dropdown-block">
-											<div class=" single-cart-block ">
+											<div th:if="${session.cart.size()} == 0"
+												class=" single-cart-block">
 												<div class="cart-product">
-													<a href="../book.html" th:href="@{/book}" class="image">
-														<img src="../../static/image/products/cart-product-1.jpg"
-														th:src="@{image/products/cart-product-1.jpg}" alt="">
+													<div class="image"></div>
+													<div class="content">
+														<h3 class="title">
+															<div>Nothing in cart</div>
+														</h3>
+													</div>
+												</div>
+											</div>
+											<div th:unless="${session.cart.size()} == 0"
+												class=" single-cart-block"
+												th:each="cartItem : ${session.cart}">
+												<div class="cart-product">
+													<a href="../book.html" th:href="@{/book(id=*{book.id})}"
+														class="image"> <img
+														src="../../static/image/products/cart-product-1.jpg"
+														th:src="@{|/image/products/cart-product-*{book.id}.jpg|}"
+														alt="">
 													</a>
 													<div class="content">
 														<h3 class="title">
-															<a href="../book.html" th:href="@{/book}">Kodak
-																PIXPRO Astro Zoom AZ421 16 MP</a>
+															<a href="../book.html" th:href="@{/book(id=*{book.id})}"
+																th:text="*{book.title}"></a>
 														</h3>
 														<p class="price">
-															<span class="qty">1 ×</span> £87.34
+															<span class="qty" th:text="*{quantity}"></span> x<span
+																th:text="*{book.price}"></span>
 														</p>
 														<button class="cross-btn">
 															<i class="fas fa-times"></i>
@@ -273,7 +291,7 @@
 									th:href="@{/}"> <i class="icons-left fas fa-home"></i> Home
 								</a></li>
 								<li class="menu-item"><a href="../cart.html"
-									th:href="@{cart}" class="cart-link link-icon"> <i
+									th:href="@{/cart}" class="cart-link link-icon"> <i
 										class="ion-bag"></i> Cart
 								</a></li>
 								<li class="menu-item has-children"><a
@@ -283,11 +301,11 @@
 									<ul class="sub-menu">
 										<li><span class="flag-img"> <img
 												src="../../static/image/icon/vietnam-flag.png"
-												th:src="@{image/icon/vietnam-flag.png}" alt="">
+												th:src="@{/image/icon/vietnam-flag.png}" alt="">
 										</span> <a href="#">Tiếng Việt</a></li>
 										<li><span class="flag-img"> <img
 												src="../../static/image/icon/eng-flag.png"
-												th:src="@{image/icon/eng-flag.png}" alt="">
+												th:src="@{/image/icon/eng-flag.png}" alt="">
 										</span> <a href="#">English</a></li>
 									</ul></li>
 								<li th:if="${true}" class="menu-item"><a

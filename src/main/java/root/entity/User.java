@@ -1,15 +1,12 @@
 package root.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
@@ -40,6 +37,8 @@ public class User implements Serializable {
 	@Size(min = 10, max = 11, message = "Invalid!")
 	private String phoneNumber;
 	private String role;
+	@OneToOne
+	private Cart cart;
 	//
 //	@ManyToMany
 //	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
@@ -49,8 +48,6 @@ public class User implements Serializable {
 //	public Collection<Role> getRoles() {
 //		return roles;
 //	}
-
-	
 
 //	public void setRoles(Collection<Role> roles) {
 //		this.roles = roles;
@@ -111,6 +108,13 @@ public class User implements Serializable {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 }

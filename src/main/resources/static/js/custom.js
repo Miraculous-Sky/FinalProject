@@ -5,6 +5,7 @@ jQuery(document).ready(function($) {
     .done(function(response) {
     	for (let i = 0; i < response.length; i++) {
     		$('.category-menu').append(`<li class="cat-item "><a href="/category?id=${response[i]}">${response[i]}</a></li>`)
+    		$(".sidebar-menu--shop").append(`<li><a href="/category?id=${response[i]}">${response[i]}</a></li>`)
     	}
     })
     .fail(function() {
