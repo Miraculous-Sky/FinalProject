@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>Login - Register</title>
 <link href="../static/css/plugins.css" type="text/css" media="screen"
 	rel="stylesheet" />
 <link href="../static/css/main.css" type="text/css" media="screen"
@@ -23,54 +23,84 @@
 						<div
 							class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb--30 mb-lg--0">
 							<!-- Login Form s-->
-							<form th:action="@{/register}" method="POST"
-								th:object="${registerUser}">
-								<div class="login-form">
+							<form th:action="@{/register}" method="post">
+								<div class="login-form" th:object="${registerForm}">
 									<h4 class="login-title">New Customer</h4>
 									<p>
 										<span class="font-weight-bold">I am a new customer</span>
 									</p>
 									<div class="row">
 										<div class="col-md-12 col-12 mb--15">
-											<label for="email">Full Name</label> <input
-												th:field="*{fullName}" class="mb-0 form-control" type="text"
-												id="name" placeholder="Enter your full name"> <span
-												style="color: red" th:if="${#fields.hasErrors('fullName')}"
-												th:errors="*{fullName}"></span>
+											<label for="registerName">Full Name <small>(optional)</small></label>
+											<input class="mb-0 form-control" type="text"
+												th:field="*{registerName}"
+												placeholder="Enter your full name"><span
+												style="color: red"
+												th:if="${#fields.hasErrors('registerName')}"
+												th:errors="*{registerName}"></span>
 										</div>
 										<div class="col-12 mb--20">
-											<label for="email">Email</label> <input th:field="*{email}"
-												class="mb-0 form-control" type="email" id="email"
-												placeholder="Enter Your Email Address Here.."> <span
-												style="color: red" th:if="${#fields.hasErrors('email')}"
-												th:errors="*{email}"></span>
-										</div>
-										<div class="col-12 mb--20">
-											<label for="email">Phone Number</label> <input
-												th:field="*{phoneNumber}" class="mb-0 form-control"
-												type="text" id="phoneNumber"
-												placeholder="Enter Your PhoneNumber Here.."> <span
+											<label for="registerEmail">Email</label> <input
+												class="mb-0 form-control" type="email"
+												th:field="*{registerEmail}"
+												placeholder="Enter your email address here.."
+												required="required" onblur="checkEmail()"><span
 												style="color: red"
-												th:if="${#fields.hasErrors('phoneNumber')}"
-												th:errors="*{phoneNumber}"></span>
+												th:if="${#fields.hasErrors('registerEmail')}"
+												th:errors="*{registerEmail}"></span><small
+												id="registerEmailFeedback" class="form-text"></small>
+										</div>
+										<script type="text/javascript">function checkEmail() {
+											var email = $("#registerEmail").val()
+										    if (email && /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email))
+										        $.ajax({
+										            type: 'GET',
+										            url: '/check-email?email='+email,
+										            success: feedback => {
+										                if (feedback) {
+										                    $('#registerEmailFeedback').css("color", "#dc3545");
+										                    $('#registerEmailFeedback').text("Email has been registered");
+										                } else {
+										                    $('#registerEmailFeedback').css("color", "#28a745");
+										                    $('#registerEmailFeedback').text("You can use this email");
+										                }
+										            }
+										        })
+										    else $('#registerEmailFeedback').text("");
+										}</script>
+										<div class="col-lg-6 mb--20">
+											<label for="registerPassword">Password</label> <input
+												class="mb-0 form-control" type="password"
+												th:field="*{registerPassword}"
+												placeholder="Enter your password" required="required"><span
+												style="color: red"
+												th:if="${#fields.hasErrors('registerPassword')}"
+												th:errors="*{registerPassword}"></span>
 										</div>
 										<div class="col-lg-6 mb--20">
-											<label for="password">Password</label> <input
-												th:field="*{password}" class="mb-0 form-control"
-												type="password" id="password"
-												placeholder="Enter your password"> <span
-												style="color: red" th:if="${#fields.hasErrors('password')}"
-												th:errors="*{password}"></span>
-										</div>
-										<div class="col-lg-6 mb--20">
-											<label for="password">Repeat Password</label> <input
-												th:field="*{repeatPassword}" class="mb-0 form-control"
-												type="password" id="repeat-password"
-												placeholder="Repeat your password"> <span
+											<label for="registerRepeatPassword">Repeat password</label> <input
+												class="mb-0 form-control" type="password"
+												th:field="*{registerRepeatPassword}"
+												placeholder="Repeat your password" required="required"
+												oninput="comparePasswords()"><span
 												style="color: red"
-												th:if="${#fields.hasErrors('repeatPassword')}"
-												th:errors="*{repeatPassword}"></span>
+												th:if="${#fields.hasErrors('registerRepeatPassword')}"
+												th:errors="*{registerRepeatPassword}"></span> <small
+												id="registerRepeatPasswordFeedback" class="form-text"></small>
 										</div>
+										<script type="text/javascript">function comparePasswords() {
+											var pass = $("#registerPassword").val()
+											var repass = $("#registerRepeatPassword").val()
+										    if (!repass)
+										    	$('#registerRepeatPasswordFeedback').text("")
+											else if(pass != repass){
+												$('#registerRepeatPasswordFeedback').css("color", "#dc3545");
+												$('#registerRepeatPasswordFeedback').text("Not match with password");
+										    } else {
+										    	$('#registerRepeatPasswordFeedback').css("color", "#28a745");
+										    	$('#registerRepeatPasswordFeedback').text("OK");
+										    }
+										}</script>
 										<div class="col-md-12">
 											<button type="submit" class="btn btn-outlined">Register</button>
 										</div>
@@ -79,48 +109,47 @@
 							</form>
 						</div>
 						<div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-							<form name="f" th:action="@{/loginForm}" th:object="${loginForm}" method="post">
-								<div class="login-form">
+							<form th:action="@{/login}" method="post">
+								<div class="login-form" th:object="${loginForm}">
 									<h4 class="login-title">Returning Customer</h4>
 									<p>
 										<span class="font-weight-bold">I am a returning
 											customer</span>
 									</p>
 									<div class="row">
-
-										<p th:if="${param.logout}" class="success">You have been
-											logged out</p>
 										<div class="col-md-12 col-12 mb--15">
-											<label for="email">Enter your email address here...</label> <input name="email"
-												type="email" class="mb-0 form-control" id="email"
-												placeholder="Enter you email address here..." />
-												<span
-												style="color: red" th:if="${#fields.hasErrors('email')}"
-												th:errors="*{email}"></span>
+											<label for="loginEmail">Email address</label> <input
+												class="mb-0 form-control" type="email"
+												placeholder="Enter you email address here..."
+												th:field="*{loginEmail}" required="required"><span
+												style="color: red"
+												th:if="${#fields.hasErrors('loginEmail')}"
+												th:errors="*{loginEmail}"></span>
 										</div>
 										<div class="col-12 mb--20">
-											<label for="password">Password</label> <input name="password"
+											<label for="loginPassword">Password</label> <input
 												class="mb-0 form-control" type="password"
-												id="password" placeholder="Enter your password">
-												<span
-												style="color: red" th:if="${#fields.hasErrors('password')}"
-												th:errors="*{password}"></span>
-										</div>
-										<div class="col-md-12">
-											<p style="color: red" th:if="${param.error}" class="error">Invalid
-												email or password!</p>
+												placeholder="Enter your password"
+												th:field="*{loginPassword}" required="required"><span
+												style="color: red"
+												th:if="${#fields.hasErrors('loginPassword')}"
+												th:errors="*{loginPassword}"></span>
 										</div>
 										<div class="col-md-12">
 											<button type="submit" class="btn btn-outlined">Login</button>
 										</div>
 									</div>
 								</div>
+								<h5 th:if="${param.error}">
+									<b style="color: red">Invalid username and password.</b>
+								</h5>
 							</form>
 						</div>
 					</div>
 				</div>
 			</main>
 		</div>
+	</div>
 	</div>
 
 	<script src="../static/js/plugins.js"></script>
