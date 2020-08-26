@@ -1,22 +1,22 @@
 package root.controller;
 
-import java.util.List;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import root.services.GenreService;
+import root.entity.Cart;
+import root.services.BookService;
 
 @Controller
 public class MainController {
 
 	@RequestMapping({ "/", "index" })
-	public String showIndex() {
+	public String showIndex(HttpSession session) {
+		session.setAttribute("cart", new Cart());
 		return "index";
 	}
 
@@ -30,13 +30,8 @@ public class MainController {
 		return "category";
 	}
 
-	@RequestMapping("/cart")
-	public String showCart() {
-		return "cart";
-	}
-
 	@RequestMapping("/book")
-	public String showProduct() {
+	public String showProduct(HttpSession session) {
 		return "book";
 	}
 
@@ -55,31 +50,12 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping("/checkout")
-	public String showCheckout() {
-		return "checkout";
-	}
-
-	@RequestMapping("/order-complete")
-	public String showOrderComplete() {
-		return "order-complete";
-	}
-
-	@RequestMapping("/leave-a-message")
-	@ResponseBody
-	public String sendMessage(HttpServletResponse httpServletResponse) {
-		if (new Random().nextInt(2) == 1)
-			return "thành công";
-		httpServletResponse.setStatus(500);
-		return "thất bại";
-	}
-
 	@Autowired
-	private GenreService genreService;
+	private BookService bookService;
 
-	@RequestMapping("/get-genre")
-	@ResponseBody
-	public List<String> getGenre(HttpServletResponse httpServletResponse) {
-		return genreService.findAll();
+	@RequestMapping("/search")
+	public String searchByName(@RequestParam("bookName") String bookName, Model model) {
+		model.addAttribute("books", bookService.findAll(bookName));
+		return "/category";
 	}
 }

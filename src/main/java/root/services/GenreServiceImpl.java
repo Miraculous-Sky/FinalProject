@@ -15,7 +15,7 @@ public class GenreServiceImpl implements GenreService {
 	private GenreRepository genreRepository;
 
 	@Override
-	public List<String> findAll() {
+	public List<String> getNameAll() {
 		List<String> result = new ArrayList<>();
 		genreRepository.findAll().forEach(genre -> result.add(genre.getName()));
 		return result;
