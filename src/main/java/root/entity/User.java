@@ -12,6 +12,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "dbuser", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -21,24 +25,36 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String email;
-	private String password;
-	private String firstName;
-	private String lastName;
-	private String phoneNumber;
 	//
-	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "roleId") })
-	private Collection<Role> roles;
+	@NotBlank(message = "Not blank!")
+	private String fullName;
+	//
+	@NotBlank(message = "Email blank!")
+	@Email(message = "Not email!")
+	private String email;
+	//
+	@Min(value = 6, message = "Password is wrong!")
+	private String password;
+	@Min(value = 6, message = "Repeat password is wrong!")
+	private String repeatPassword;
+	@Size(min = 10, max = 11, message = "Invalid!")
+	private String phoneNumber;
+	private String role;
+	//
+//	@ManyToMany
+//	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+//			@JoinColumn(name = "roleId") })
+//	private Collection<Role> roles;
 
-	public Collection<Role> getRoles() {
-		return roles;
-	}
+//	public Collection<Role> getRoles() {
+//		return roles;
+//	}
 
-	public void setRoles(Collection<Role> roles) {
-		this.roles = roles;
-	}
+	
+
+//	public void setRoles(Collection<Role> roles) {
+//		this.roles = roles;
+//	}
 
 	public int getId() {
 		return id;
@@ -64,20 +80,12 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public String getPhoneNumber() {
@@ -87,5 +95,22 @@ public class User implements Serializable {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
 
 }
