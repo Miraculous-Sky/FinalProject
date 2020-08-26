@@ -1,6 +1,9 @@
 package root.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import root.entity.User;
 import root.model.LoginForm;
 import root.services.UserService;
@@ -29,16 +31,15 @@ public class LoginController {
 		return "login-register";
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginForm", method = RequestMethod.POST)
 	public String validateLogin(Model model, @Validated @ModelAttribute("loginForm") LoginForm loginForm,
-			BindingResult result) {
-		System.out.println(loginForm.getEmail());
-		System.out.println(loginForm.getPassword());
+			BindingResult result, String userSession, HttpSession session) {
 		model.addAttribute("registerUser", registerUser);
 		if (result.hasErrors()) {
 			return "login-register";
 		} else {
 			if (userService.canLogin(loginForm.getEmail(), loginForm.getPassword())) {
+				session.setAttribute("userSession", userSession);
 				return "faq";
 			} else {
 				return "login-register";
@@ -54,10 +55,10 @@ public class LoginController {
 		if (result.hasErrors()) {
 			return "login-register";
 		} else {
-			if (!userService.findByEmail(user.getEmail())) {
+			if (!userService.findByEmail(user.getEmail())) {		
 				user.setRole("ROLE_USER");
 				userService.save(user);
-				return "faq";
+				return "index";
 			} else {
 				return "login-register";
 			}

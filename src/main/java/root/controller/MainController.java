@@ -17,6 +17,7 @@ public class MainController {
 	@RequestMapping({ "/", "index" })
 	public String showIndex(HttpSession session) {
 		session.setAttribute("cart", new Cart());
+		session.setAttribute("userSession", null);
 		return "index";
 	}
 

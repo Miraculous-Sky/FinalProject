@@ -52,4 +52,17 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 	}
+
+	@Override
+	public User findEmail(String email) {
+		Iterator<User> itr = userRepository.findAll().iterator();
+		while (itr.hasNext()) {
+			User u = itr.next();
+			if (u.getEmail().equalsIgnoreCase(email)) {
+				return u;
+			}
+		}
+return null;
+		
+	}
 }
