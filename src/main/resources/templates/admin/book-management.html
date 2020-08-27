@@ -27,28 +27,42 @@
 									<table class="table">
 										<thead>
 											<tr>
-											<th class="pro-thumbnail">ID</th>
-												<th class="pro-thumbnail">Title</th>
-												<th class="pro-thumbnail">Short Description</th>
-												<th class="pro-thumbnail">Description Detail</th>
-												<th class="pro-thumbnail">Images</th>
-												<th class="pro-thumbnail">Thumbnail</th>
-												<th class="pro-thumbnail">Publisher</th>
-												<th class="pro-thumbnail">Available</th>
-												<th class="pro-thumbnail">cover Type</th>
-												<th class="pro-thumbnail">Weight</th>
-												<th class="pro-thumbnail">Pages</th>
-												<th class="pro-thumbnail">Price</th>
-												<th class="pro-thumbnail">discount</th>
+												<th><a th:href="@{/admin/add_book}"
+													class="btn btn-danger">ADD NEW BOOK</a></th>
+											</tr>
+
+											<tr>
+												<th class="">Edit</th>
+												<th class="">Delete</th>
+												<th class="">ID</th>
+												<th class="">Title</th>
+												<th class="">Short Description</th>
+												<th class="">Description Detail</th>
+												<!-- 												<th class="">Images</th> -->
+												<th class="">Thumbnail</th>
+												<th class="">Publisher</th>
+												<th class="">Available</th>
+												<th class="">cover Type</th>
+												<th class="">Weight</th>
+												<th class="">Pages</th>
+												<th class="">Price</th>
+												<th class="">discount</th>
+
 											</tr>
 										</thead>
 										<tbody>
 											<tr th:each="book : ${books}">
+												<td class="pro-quantity"><a
+													th:href="@{/admin/edit_book?id={id}(id=${book.id})}"
+													class="btn btn-primary"><i class="far fa-address-card"></i></a></td>
+												<td><a
+													th:href="@{/admin/delete_book?id={id}(id=${book.id})}"
+													class="btn btn-danger">Delete</a></td>
 												<td th:text="${book.id}"></td>
 												<td th:text="${book.title}"></td>
 												<td th:text="${book.shortDescription}"></td>
 												<td th:text="${book.shortlong}"></td>
-												<td th:text="${book.image}"></td>
+												<!-- 												<td th:text="${book.image}"></td> -->
 												<td th:text="${book.thumbnail}"></td>
 												<td th:text="${book.publisher}"></td>
 												<td th:text="${book.available}"></td>
@@ -57,27 +71,8 @@
 												<td th:text="${book.pages}"></td>
 												<td th:text="${book.price}"></td>
 												<td th:text="${book.discount}"></td>
-												<td class="pro-quantity">
-													<div class="pro-qty">
-														<div class="count-input-block">
-															<input type="number" class="form-control text-center"
-																value="1">
-														</div>
-														<a th:href="@{/edit?id={id}(id=${user.id})}"
-															class="btn btn-primary">Edit</a> <a
-															th:href="@{/delete?id={id}(id=${user.id})}"
-															class="btn btn-danger">Delete</a>
-													</div>
-												</td>
-												<dt><div class="pro-qty">
-														<div class="count-input-block">
-															<input type="number" class="form-control text-center"
-																value="1">
-														</div>
-														<a th:href="@{/edit?id={id}(id=${user.id})}"
-															class="btn btn-primary">Edit</a> <a
-															th:href="@{/delete?id={id}(id=${user.id})}"
-															class="btn btn-danger">Delete</a></dt>
+
+
 											</tr>
 										</tbody>
 									</table>
