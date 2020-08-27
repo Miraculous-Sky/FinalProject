@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import root.entity.Cart;
 import root.services.BookService;
 
 @Controller
@@ -16,8 +15,6 @@ public class MainController {
 
 	@RequestMapping({ "/", "index" })
 	public String showIndex(HttpSession session) {
-		session.setAttribute("cart", new Cart());
-		session.setAttribute("userSession", null);
 		return "index";
 	}
 
@@ -44,11 +41,6 @@ public class MainController {
 	@RequestMapping("/my-account")
 	public String showMyAccount() {
 		return "my-account";
-	}
-
-	@RequestMapping("/logout")
-	public String logout() {
-		return "index";
 	}
 
 	@Autowired

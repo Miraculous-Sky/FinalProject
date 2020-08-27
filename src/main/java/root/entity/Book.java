@@ -8,7 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +33,6 @@ public class Book {
 	@OneToMany()
 	private List<Book> relatives;
 //
-
 	public long getId() {
 		return id;
 	}

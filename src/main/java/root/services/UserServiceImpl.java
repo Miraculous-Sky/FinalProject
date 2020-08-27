@@ -66,6 +66,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 
+
 	}
 
 	@Override
@@ -83,5 +84,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> findUserById(int id) {
 		return userRepository.findById(id);
+
 	}
 }
