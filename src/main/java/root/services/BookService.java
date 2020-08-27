@@ -17,5 +17,7 @@ public interface BookService {
 
 	void deleteBook(Book book);
 
+	void deleteBookById(int id);
+
 	public Optional<Book> findUserById(int id);
 }

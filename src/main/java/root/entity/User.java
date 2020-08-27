@@ -57,6 +57,36 @@ public class User implements Serializable {
 		return id;
 	}
 
+
+	public User(@NotBlank(message = "Not blank!") String fullName,
+			@NotBlank(message = "Email blank!") @Email(message = "Not email!") String email,
+			@NotBlank(message = "Password is wrong!") String password) {
+		this.fullName = fullName;
+		this.email = email;
+		this.password = password;
+	}
+	//
+	
+
+
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public User(@NotBlank(message = "Not blank!") String fullName,
+			@NotBlank(message = "Email blank!") @Email(message = "Not email!") String email,
+			@NotBlank(message = "Password is wrong!") String password,
+			@Min(value = 6, message = "Repeat password is wrong!") String repeatPassword,
+			@Size(min = 10, max = 13, message = "Invalid!") String phoneNumber) {
+		this.fullName = fullName;
+		this.email = email;
+		this.password = password;
+		this.repeatPassword = repeatPassword;
+		this.phoneNumber = phoneNumber;
+	}
+
+
 	public void setId(int id) {
 		this.id = id;
 	}

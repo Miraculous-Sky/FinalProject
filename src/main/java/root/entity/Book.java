@@ -29,9 +29,30 @@ public class Book {
 	private double discount;
 	@OneToMany()
 	private List<Book> relatives;
+//
 
 	public long getId() {
 		return id;
+	}
+
+	public Book(String author, String title, String shortDescription, String shortlong, 
+			String thumbnail, String publisher, int available, String coverType, String weight, int pages, double price,
+			double discount) {
+		this.author = author;
+		this.title = title;
+		this.shortDescription = shortDescription;
+		this.shortlong = shortlong;
+		this.thumbnail = thumbnail;
+		this.publisher = publisher;
+		this.available = available;
+		this.coverType = coverType;
+		this.weight = weight;
+		this.pages = pages;
+		this.price = price;
+		this.discount = discount;
+	}
+
+	public Book() {
 	}
 
 	public void setId(long id) {

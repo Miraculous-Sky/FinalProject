@@ -19,29 +19,30 @@
 		<div layout:fragment="content">
 			<div class="col-3"></div>
 			<div class="container col-6">
+				<h1>NEW BOOK</h1>
 				<form th:object="${book}" th:action="@{/admin/save_book}" action="#"
 					method="post">
 					<input type="hidden" th:field="*{id}">
 					<div>
+						<label th:text="Author" th:for="author"></label> <input
+							type="text" th:field="*{author}" class="form-control" />
+					</div>
+					<div>
 						<label th:text="Title" th:for="title"></label> <input type="text"
 							th:field="*{title}" class="form-control" />
 					</div>
-					<div style="clear: both; display: block; height: 10px"></div>
+					<!-- 					<div style="clear: both; display: block; height: 10px"></div> -->
 					<div>
-						<label th:text="Short Description" th:for="shortDescription"></label>
+						<label th:text="Short_Description" th:for="shortDescription"></label>
 						<input type="text" th:field="*{shortDescription}"
 							class="form-control" />
 					</div>
 					<div style="clear: both; display: block; height: 10px"></div>
 					<div>
-						<label th:text="Description Detail" th:for="shortlong"></label> <input
-							type="text" th:field="*{shortLong}" class="form-control" />
+						<label th:text="Long_Description" th:for="shortlong"></label><input
+							type="text" th:field="*{shortlong}" class="form-control" />
 					</div>
 					<div style="clear: both; display: block; height: 10px"></div>
-					<div>
-						<label th:text="Image" th:for="image"></label> <input type="text"
-							th:field="*{image}" class="form-control" />
-					</div>
 					<div>
 						<label th:text="Thumbnail" th:for="thumbnail"></label> <input
 							type="text" th:field="*{thumbnail}" class="form-control" />
@@ -51,19 +52,13 @@
 						<label th:text="Publisher" th:for="publisher"></label> <input
 							type="text" th:field="*{publisher}" class="form-control" />
 					</div>
-					<div style="clear: both; display: block; height: 10px"></div>
 					<div>
 						<label th:text="Available" th:for="available"></label> <input
 							type="text" th:field="*{available}" class="form-control" />
 					</div>
 					<div style="clear: both; display: block; height: 10px"></div>
 					<div>
-						<label th:text="Cover Type" th:for="coverType"></label> <input
-							type="text" th:field="*{coverType}" class="form-control" />
-					</div>
-					<div style="clear: both; display: block; height: 10px"></div>
-					<div>
-						<label th:text="Cover Type" th:for="coverType"></label> <input
+						<label th:text="CoverType" th:for="coverType"></label> <input
 							type="text" th:field="*{coverType}" class="form-control" />
 					</div>
 					<div style="clear: both; display: block; height: 10px"></div>
@@ -73,12 +68,12 @@
 					</div>
 					<div style="clear: both; display: block; height: 10px"></div>
 					<div>
-						<label th:text="price" th:for="price"></label> <input type="text"
+						<label th:text="Price" th:for="price"></label> <input type="text"
 							th:field="*{price}" class="form-control" />
 					</div>
 					<div style="clear: both; display: block; height: 10px"></div>
 					<div>
-						<label th:text="discount" th:for="discount"></label> <input
+						<label th:text="Discount" th:for="discount"></label> <input
 							type="text" th:field="*{discount}" class="form-control" />
 					</div>
 					<div style="clear: both; display: block; height: 10px"></div>

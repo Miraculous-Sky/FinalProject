@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Title</title>
+<title>ADD USER</title>
 <link href="../../static/css/plugins.css" type="text/css" media="screen"
 	rel="stylesheet" />
 <link href="../../static/css/main.css" type="text/css" media="screen"
@@ -18,40 +18,39 @@
 	<div class="site-wrapper" id="top">
 		<div layout:fragment="content">
 			<div layout:fragment="content">
-			<div class="col-3"></div>
-			<div class="container col-6">
-				<h1>Edit User</h1>
-				<form th:object="${user}" th:action="@{/admin/save}" action="#"
-					method="post">
-					<input type="hidden" th:field="*{id}">
-					<div>
-						<label th:text="Name" th:for="fullName"></label> <input
-							type="text" th:field="*{fullName}" class="form-control" />
-					</div>
-					<div style="clear: both; display: block; height: 10px"></div>
-					<div>
-						<label th:text="Email" th:for="email"></label> <input type="text"
-							th:field="*{email}" class="form-control" />
-					</div>
-					<div style="clear: both; display: block; height: 10px"></div>
-					<div>
-						<label th:text="Password" th:for="password"></label> <input
-							type="text" th:field="*{password}" class="form-control" />
-					</div>
-					<div style="clear: both; display: block; height: 10px"></div>
-					<div>
-						<label th:text="Phone" th:for="phone"></label> <input type="text"
-							th:field="*{phoneNumber}" class="form-control" />
-					</div>
-					<div>
-						<label th:text="Role" th:for="role"></label> <input type="text"
-							th:field="*{role}" class="form-control" />
-					</div>
-					<div style="clear: both; display: block; height: 10px"></div>
-					<input type="submit" class="btn btn-success" value="Save" />
-				</form>
+				<div class="col-3"></div>
+				<div class="container col-6">
+					<h1>NEW User</h1>
+					<form th:object="${user}" th:action="@{/admin/save}" action="#"
+						method="post">
+						<div>
+							<label th:text="Name" th:for="fullName"></label> <input
+								type="text" th:field="*{fullName}" class="form-control" />
+						</div>
+						<div style="clear: both; display: block; height: 10px"></div>
+						<div>
+							<label th:text="Email" th:for="email"></label> <input type="text"
+								th:field="*{email}" class="form-control" />
+						</div>
+						<div style="clear: both; display: block; height: 10px"></div>
+						<div>
+							<label th:text="Password" th:for="password"></label> <input
+								type="text" th:field="*{password}" class="form-control" />
+						</div>
+						<div style="clear: both; display: block; height: 10px"></div>
+						<div>
+							<label th:text="Phone" th:for="phone"></label> <input type="text"
+								th:field="*{phoneNumber}" class="form-control" />
+						</div>
+						<div>
+							<label th:text="Role" th:for="role"></label> <input type="text"
+								th:field="*{role}" class="form-control" />
+						</div>
+						<div style="clear: both; display: block; height: 10px"></div>
+						<input type="submit" class="btn btn-success" value="Save" />
+					</form>
+				</div>
 			</div>
-		</div>
 		</div>
 	</div>
 
