@@ -68,7 +68,7 @@ public class AdminController {
 		String password = " ";
 		String repeatPassword = "......";
 		String phoneNumber = "--- --- ----";
-		User user = new User(username, email, password, repeatPassword, phoneNumber);
+		User user = new User();
 		model.addAttribute("user", user);
 		return "admin/addUser";
 	}
